@@ -1,0 +1,32 @@
+[
+    {
+        "id" : 1,
+        "img" : "https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1774%2F417c4773.jpg&w=1060&q=100",
+        "title" : "WONDER PEOPLE",
+        "subtitle" : "세상을 바꿀 위대한 게임을 만듭니다."
+    },
+    {
+        "id" : 2,
+        "img" : "https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1776%2F89e208e3.jpg&w=1060&q=100",
+        "title" : "WONDER PEOPLE",
+        "subtitle" : "세상을 바꿀 위대한 게임을 만듭니다."
+    },
+    {
+        "id" : 3,
+        "img" : "https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1790%2Fd4b41ce4.jpg&w=1060&q=100",
+        "title" : "WONDER PEOPLE",
+        "subtitle" : "세상을 바꿀 위대한 게임을 만듭니다."
+    },
+    {
+        "id" : 4,
+        "img" : "https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1786%2F2441afc4.jpg&w=1060&q=100",
+        "title" : "WONDER PEOPLE",
+        "subtitle" : "세상을 바꿀 위대한 게임을 만듭니다."
+    },
+    {
+        "id" : 5,
+        "img" : "https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1789%2F7ffde204.jpg&w=1060&q=100",
+        "title" : "WONDER PEOPLE",
+        "subtitle" : "세상을 바꿀 위대한 게임을 만듭니다."
+    }
+]
