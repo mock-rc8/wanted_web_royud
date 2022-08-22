@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 
-import slideBox from "../../db/slide.json"
-
 function SliderList(props){
 
     const img_src = props.img_src;
@@ -26,7 +24,15 @@ function SliderList(props){
                     </div>
                     <div className="slider_list_desc_bar"></div>
                     <div className="slider_list_desc_btn">
-                        <span>바로 가기</span>
+                        <span>
+                            바로 가기
+                            <svg>
+                                <path
+                                d = "m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                                ></path>
+                            </svg>
+                        </span>
+
                     </div>
                 </div>
                 :null
@@ -49,18 +55,17 @@ export default function Slider(props){
     const [currentIdx, setCurrentIdx] = useState(0);
     const [slideIdx, setSlideIdx] = useState(1);
 
-
     const fake_slide_box = [
-        slideBox[slideBox.length - 2],
-        slideBox[slideBox.length - 1],
-        ...slideBox,
-        slideBox[0],
-        slideBox[1]
+        slide_img_list[slide_img_list.length - 2],
+        slide_img_list[slide_img_list.length - 1],
+        ...slide_img_list,
+        slide_img_list[0],
+        slide_img_list[1]
     ];
     const slideLeftFake = () => {
         setSlideIdx(slideIdx - 1)
         setTimeout(() => {
-            setSlideIdx(slideBox.length)
+            setSlideIdx(slide_img_list.length)
             set_transition_style("")
         }, ani_time * 1000);
     }
@@ -79,21 +84,21 @@ export default function Slider(props){
         setCurrentIdx(currentIdx - 1);
         setSlideIdx(slideIdx - 1)
         if(currentIdx === 0){
-            setCurrentIdx(slideBox.length - 1);
+            setCurrentIdx(slide_img_list.length - 1);
             slideLeftFake();
         };
-        if(slideIdx === 1 || slideIdx === slideBox.length){
+        if(slideIdx === 1 || slideIdx === slide_img_list.length){
             setani();
         }
     }
     const slide_move_right = () => {
         setCurrentIdx(currentIdx + 1);
         setSlideIdx(slideIdx + 1)
-        if(currentIdx === slideBox.length - 1){
+        if(currentIdx === slide_img_list.length - 1){
             setCurrentIdx(0);
             slideRightFake();
         };
-        if(slideIdx === 1 || slideIdx === slideBox.length){
+        if(slideIdx === 1 || slideIdx === slide_img_list.length){
             setani();
         }
     }
@@ -115,22 +120,22 @@ export default function Slider(props){
             >
                 {
                     fake_slide_box.map((slide) => (
-                        slideIdx === slide.id
+                        slideIdx === slide_img_list.indexOf(slide) + 1
                         ?<SliderList
                         key = {Math.random()}
                         thisClass = "slider_list current"
-                        id = {slide.id}
-                        img_src = {slide.img}
-                        title = {slide.title}
-                        subtitle = {slide.subtitle}
+                        id = {slide.bannerIdx}
+                        img_src = {slide.imageUrl}
+                        title = "WONDER PEOPLE"
+                        subtitle = "세상을 바꿀 위대한 게임을 만듭니다."
                         />
                         :<SliderList
                         key = {Math.random()}
                         thisClass = "slider_list"
-                        id = {slide.id}
-                        img_src = {slide.img}
-                        title = {slide.title}
-                        subtitle = {slide.subtitle}
+                        id = {slide.bannerIdx}
+                        img_src = {slide.imageUrl}
+                        title = "WONDER PEOPLE"
+                        subtitle = "세상을 바꿀 위대한 게임을 만듭니다."
                         />
                         
                     ))
@@ -138,10 +143,22 @@ export default function Slider(props){
             </ul>
             <div className="slide_btn left"
             onClick={slide_move_left}
-            ></div>
+            >
+                <svg>
+                    <path
+                    d = "m6.045 9 5.978-5.977a.563.563 0 1 0-.796-.796L4.852 8.602a.562.562 0 0 0 0 .796l6.375 6.375a.563.563 0 0 0 .796-.796L6.045 9z"
+                    ></path>
+                </svg>
+            </div>
             <div className="slide_btn right"
             onClick={slide_move_right}
-            ></div>
+            >
+                <svg>
+                    <path
+                    d = "m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                    ></path>
+                </svg>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,34 @@
+.creater_baner {
+    width: 100%; height: 110px;
+    background-color: #36f;
+  }
+  .creater_baner_wrap {
+    width: 1060px; height: 100%;
+    margin: 0 auto;
+    display: flex; align-items: center;
+  }
+  .creater_baner_comment {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: -.2px;
+  }
+  .creater_baner_comment>span {
+    color: #a9ecf0;
+  }
+  .creater_baner_img {
+    flex-grow: 1;
+  }
+  .creater_baner_btn {
+    width: 164px; height: 40px;
+    padding: 0 27px;
+    background-color: #fff;
+    border: 1px solid #36f; border-radius: 25px;
+    color: #36f; font-size: 15px; font-weight: 700;
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer;
+  }
+  .creater_baner_btn:hover {
+    color: rgb(0, 43, 170); border: 1px solid rgb(0, 43, 170);
+  }

@@ -5,6 +5,7 @@ import './App.css';
 
 import MainPage from './component/page/main_page';
 import JobsfeedPage from './component/page/jobsfeed';
+import WdListPage from "./component/page/wdlist";
 
 
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {<MainPage />} />
         <Route path= '/jobsfeed' element = {<JobsfeedPage />} />
+        <Route path="/wdlist" element = {<WdListPage />} />
       </Routes>
 
       </BrowserRouter>

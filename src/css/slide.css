@@ -1,0 +1,78 @@
+.slider_wrap {
+    width: 100%; height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+  .slider_lists {
+    display: flex;
+  }
+  .slider_list {
+    margin: 0 12px;
+    width: 1060px; height: 300px;
+    border-radius: 4px;
+    position: relative;
+    background-color: black;
+    cursor: pointer;
+  }
+  .slider_list img {
+    width: 1060px; height: 300px;
+    border-radius: 4px;
+    opacity: 0.5;
+  }
+  .slider_list.current img {
+    opacity: 1;
+  }
+  .slider_list .slider_list_desc_wrap {
+    width: 330px; height: 146px;
+    position: absolute; left: 34px; bottom: 28px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  .slider_list_desc_title {
+    margin: 20px 20px 0;
+    font-size: 20px; font-weight: 700;
+    line-height: 1.5;
+    color: #333;
+  }
+  .slider_list_desc_subtitle {
+    height: 44px; margin: 0 20px;
+    font-size: 14px;
+    line-height: 1.64;
+    color: #333;
+  }
+  .slider_list_desc_bar {
+    width: 100%; height: 1px;
+    background-color: #ececec;
+  }
+  .slider_list_desc_btn {
+    font-size: 14px; font-weight: 700;
+    line-height: 1;
+    color: #36f;
+    margin: 6px 0 0 13px; padding: 6px 8px;
+    height: 28px;
+    display: flex; align-items: center;
+    cursor: pointer;
+  }
+  .slider_list_desc_btn svg {
+    width: 14px; height: 14px;
+    fill: currentColor;
+  }
+  .slide_btn {
+    position: absolute; top: 120px;
+    width: 30px;height: 60px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.5;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .slide_btn svg {
+    width: 1em; height: 1em;
+    line-height: 1;
+  }
+  .slide_btn.left {
+    left: 330px;
+  }
+  .slide_btn.right {
+    right: 350px;
+  }
