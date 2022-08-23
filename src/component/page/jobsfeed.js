@@ -114,6 +114,15 @@ export default function JobsfeedPage(){
                 </div>
             </div>
             
+            <div className="section_my">
+                <ul className="section_my_lists">
+                    <li className="section_my_list">
+                        내 프로필
+                    </li>
+                </ul>
+            </div>
+
+
             <Footer />
         </div>
     )

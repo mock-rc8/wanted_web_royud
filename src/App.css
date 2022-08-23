@@ -44,9 +44,36 @@
 }
 .subscribe_promotion_wrap {
   width: 1060px;
+  display: flex;
+  justify-content: space-between; align-items: center;
   margin: 0 auto;
 }
-
+.subscribe_promotion_title {
+  font-size: 30px; font-weight: 700;
+  line-height: 1.42857143;
+  color: #333333;
+  display: flex; align-items: center;
+}
+.subscribe_promotion_title_svg {
+  margin: 8px 4px 0 0;
+}
+.subscribe_promotion_title_svg svg {
+  width: 160px; height: 31px;
+}
+.subscribe_promotion_comment {
+  font-size: 14px;
+    line-height: 1.42857143;
+  color: #333333;
+}
+.subscribe_promotion_btn {
+  width: 260px; height: 50px;
+  margin-top: 25px; padding: 0 27px;
+  color: #fff;
+  background-color: #36f;
+  border: none; border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
 .recommend_position_wrap {
   padding: 60px 0; width: 100%;
   background: #f4f8fb;
@@ -300,4 +327,18 @@
   font-size: 14px; font-weight: 500;
   margin-top: 10px;
   color: #333;
+}
+.section_my {
+  padding: 60px 0; margin: 0 auto;
+  width: 1060px; height: 80px;
+}
+.section_my_lists {
+  width: 100%; height: 100%;
+  border-radius: 38.5px;
+  background-color: #333;
+  display: flex;
+  flex-wrap: wrap;
+}
+.section_my_list {
+  
 }
