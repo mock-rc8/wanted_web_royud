@@ -4,15 +4,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import { useRecoilState, useRecoilValue } from "recoil"
-import { isLogin } from "../../recoil/recoil";
-import { Login_profile } from "../../recoil/recoil";
+import { isLogin, getToken, Login_profile } from "../../recoil/recoil";
 
 function LoginPopupComp(props){
     const [password_popup, set_password_popup] = useState(false);
     const [sign_in_popup, set_sign_in_popup] = useState(true);
     const [sign_up_popup, set_sign_up_popup] = useState(false);
 
-    const [isLogined, set_isLogined] = useRecoilState(isLogin);
+    const [token, setToken] = useRecoilState(getToken);
 
     const login_popup_on = props.login_popup_on;
     const set_login_popup_on = props.set_login_popup_on;
@@ -117,6 +116,7 @@ function LoginPopupComp(props){
             })
             localStorage.setItem("token", data.data.result.jwt);
             localStorage.setItem("userIdx", data.data.result.userIdx);
+            setToken(localStorage.getItem("token"))
         }
         catch(err){
             console.log(err);
@@ -125,7 +125,6 @@ function LoginPopupComp(props){
     const sign_in_btn = () => {
         sign_in();
         alert("로그인이 완료되었습니다.")
-        set_isLogined(true);
 
         //밸류 초기화
         set_email_value("");
@@ -138,7 +137,6 @@ function LoginPopupComp(props){
         set_password_popup(false);
         set_login_popup_on(false);
     }
-
     // ------------------------------------------------
     //회원 가입
     const sign_up = async() => {
@@ -449,12 +447,14 @@ function HeaderLogoWrap(){
         </div>
     )
 }
+
 function HeaderAnotherWrap(){
-    const [isLogined, setisLogined] = useRecoilState(isLogin);
     const [Login_profiled, setLogin_profiled] = useRecoilState(Login_profile)
     //----------------------------------------------------
     const [login_popup_on, set_login_popup_on] = useState(false);
-
+    
+    const [token, setToken] = useRecoilState(getToken);
+    const [isLogined, setisLogined] = useRecoilState(isLogin);
     //----------------------------------------------------
     const login_popup_Active = () => {
         set_login_popup_on(true)
@@ -477,10 +477,92 @@ function HeaderAnotherWrap(){
         localStorage.removeItem("token");
         localStorage.removeItem("userIdx");
         setLogin_profiled([]);
-        setisLogined(false);
+        setToken("");
     }
+    // ------------------------------------------------
+    // 새로고침할 때 토큰 다시 불러옴
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, [])
+    //토큰이 들어있는지에 따라 로그인 상태 반영
+    useEffect(() => {
+        if(token){
+            setisLogined(true);
+        } else {
+            setisLogined(false); 
+        }
+    }, [token])
+    //----------------------------------------------------
 
     //----------------------------------------------------
+    if(isLogined){
+        return (
+            <div className='header_another_wrap'>
+                <div className='header_search_ico'>
+                    <svg>
+                        <path
+                        d = "M15.727 17.273a.563.563 0 10.796-.796l-4.875-4.875-.19-.165a.563.563 0 00-.764.028 5.063 5.063 0 111.261-2.068.562.562 0 101.073.338 6.188 6.188 0 10-1.943 2.894l4.642 4.644z"
+                        ></path>
+                    </svg>
+                </div>
+                <div
+                    className="header_profile"
+                    onClick={my_mini_space_on}
+                    >
+                        <div
+                        className="header_profile_img"
+                        style={{ backgroundImage: `url(${Login_profiled.imgUrl})` }}
+                        ></div>
+                        <ul className={my_mini_space_class}>
+                            <Link to = "/mywanted">
+                                <li className="my_mini_space_list">
+                                    MY 원티드
+                                </li>
+                            </Link>
+                            <Link to = "/profile">
+                                <li className="my_mini_space_list">
+                                    프로필
+                                </li>
+                            </Link>
+                            <div className="my_mini_space_bar"></div>
+                            <li className="my_mini_space_list">
+                                지원 현황
+                            </li>
+                            <li className="my_mini_space_list">
+                                제안받기 현황
+                            </li>
+                            <li className="my_mini_space_list">
+                                좋아요
+                            </li>
+                            <li className="my_mini_space_list">
+                                북마크
+                            </li>
+                            <div className="my_mini_space_bar"></div>
+                            <li className="my_mini_space_list">
+                                추천
+                            </li>
+                            <li className="my_mini_space_list">
+                                포인트
+                            </li>
+                            <li
+                            className="my_mini_space_logout"
+                            onClick={isLogoutBtn}
+                            >
+                                로그아웃
+                            </li>
+                        </ul>
+                </div>
+                <div className='header_another_bar'></div>
+                <div className='header_enterprise_service'>
+                    기업 서비스
+                </div>
+                <LoginPopupComp
+                login_popup_on = {login_popup_on}
+                set_login_popup_on = {set_login_popup_on}
+                />
+            </div>
+        )
+    }
     return (
         <div className='header_another_wrap'>
             <div className='header_search_ico'>
@@ -490,56 +572,12 @@ function HeaderAnotherWrap(){
                     ></path>
                 </svg>
             </div>
-            {
-                isLogined
-                ?<div
-                className="header_profile"
-                onClick={my_mini_space_on}
-                >
-                    <div
-                    className="header_profile_img"
-                    style={{ backgroundImage: `url(${Login_profiled.imgUrl})` }}
-                    ></div>
-                    <ul className={my_mini_space_class}>
-                        <li className="my_mini_space_list">
-                            MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li className="my_mini_space_list">
-                        MY 원티드
-                        </li>
-                        <li
-                        className="my_mini_space_logout"
-                        onClick={isLogoutBtn}
-                        >
-                            로그아웃
-                        </li>
-                    </ul>
-                </div>
-                :<div
-                className='header_members_login'
-                onClick={login_popup_Active}
-                >
-                    회원가입/로그인
-                </div>
-            }
+            <div
+            className='header_members_login'
+            onClick={login_popup_Active}
+            >
+                회원가입/로그인
+            </div>
 
             <div className='header_another_bar'></div>
             <div className='header_enterprise_service'>

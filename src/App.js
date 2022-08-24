@@ -6,27 +6,32 @@ import './App.css';
 import MainPage from './component/page/main_page';
 import JobsfeedPage from './component/page/jobsfeed';
 import WdListPage from "./component/page/wdlist";
+import MyWantedPage from "./component/page/mywanted";
+import ProfilePage from "./component/page/profile";
 
 import axios from "axios"
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { isLogin } from "./recoil/recoil";
-import { Login_profile } from "./recoil/recoil";
+import { isLogin, Login_profile } from "./recoil/recoil";
 
 function App() {
+  const [isLogined, set_isLogined] = useRecoilState(isLogin);
   const [Login_profiled, set_Login_profiled] = useRecoilState(Login_profile)
+
+  // 로그인 시 프로필 이미지 가져오기
+
   const url = "https://prod.serverhwan.shop"
+
   const Login_profile_call = async() => {
     try{
       const data = await axios({
         method: "get",
         url: `${url}/users/${localStorage.getItem("userIdx")}`,
         headers: {
-          useIdx: localStorage.getItem("userIdx"),
+          userIdx: localStorage.getItem("userIdx"),
           "X-ACCESS-TOKEN" : localStorage.getItem("token")
         }
       })
-      console.log(data.data.result);
       set_Login_profiled(data.data.result)
     }
 
@@ -35,10 +40,11 @@ function App() {
     }
   }
   useEffect(() => {
-    if(localStorage.getItem("token")){
+    if(isLogined){
       Login_profile_call();
     }
-  }, [localStorage.getItem("token")])
+  }, [isLogined])
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -46,6 +52,8 @@ function App() {
         <Route path = "/" element = {<MainPage />} />
         <Route path= '/jobsfeed' element = {<JobsfeedPage />} />
         <Route path="/wdlist" element = {<WdListPage />} />
+        <Route path="/mywanted" element = {<MyWantedPage />} />
+        <Route path="/profile" element = {<ProfilePage />} />
       </Routes>
 
       </BrowserRouter>

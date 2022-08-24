@@ -4,6 +4,10 @@ export const isLogin = atom({
     key: "isLogin",
     default: false
 })
+export const getToken = atom({
+    key : "token",
+    default: ""
+})
 export const Login_profile = atom({
     key: "Login_profile",
     default : []

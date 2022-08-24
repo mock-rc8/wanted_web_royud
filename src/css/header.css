@@ -133,7 +133,6 @@ header {
 .login_popup_top_logo {
   width: 360px; height: 22px;
   padding: 16px 20px;
-  border: 1px solid blueviolet;
 }
 .login_popup_body {
   padding: 20px;
@@ -285,8 +284,17 @@ header {
 }
 .my_mini_space_list {
   padding: 8px; text-align: center;
+  font-size: 14px; font-weight: 500;
+  color: #333;
+}
+.my_mini_space_bar {
+  width: 178px; height: 1px;
+  margin: 9px 7px;
+  background-color: #ececec;
 }
 
 .my_mini_space_logout {
   padding: 8px; text-align: center;
+  font-size: 14px; font-weight: 500;
+  color: #333;
 }
