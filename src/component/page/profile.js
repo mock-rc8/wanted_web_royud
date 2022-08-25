@@ -39,7 +39,36 @@ export default function ProfilePage(){
                                     </div>
                                 </div>
                             </div>
+                            <ul className="MyInfo_Main_left_match_lists">
+                                <li className="MyInfo_Main_left_match_list">
+                                    <div className="MyInfo_Main_left_menu">
+                                        관심 있음
+                                    </div>
+                                    <div className="MyInfo_Main_left_desc">
+                                        0
+                                    </div>
+                                </li>
+                                <li className="MyInfo_Main_left_match_list">
+                                    <div className="MyInfo_Main_left_menu">
+                                        열람
+                                    </div>
+                                    <div className="MyInfo_Main_left_desc">
+                                        0
+                                    </div>
+                                </li>
+                                <li className="MyInfo_Main_left_match_list">
+                                    <div className="MyInfo_Main_left_menu">
+                                        받은 제안
+                                    </div>
+                                    <div className="MyInfo_Main_left_desc">
+                                        0
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
+                    <div className="MyInfo_Main_right">
+                        
                     </div>
                 </div>
             </div>

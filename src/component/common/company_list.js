@@ -32,7 +32,7 @@ export default function CompanyList(props){
                     {nation}
                 </div>
                 <div className="company_list_reward">
-                    {reward}
+                    채용 보상금 {reward.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원
                 </div>
             </div>
 
