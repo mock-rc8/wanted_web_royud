@@ -42,7 +42,6 @@ export default function MyWantedPage(){
                     userIdx : localStorage.getItem("userIdx")
                 }
             })
-            console.log(data.data.result);
             //인포 창
             set_userImg(data.data.result.user.imageUrl);
             set_userName(data.data.result.user.name);
@@ -228,7 +227,7 @@ export default function MyWantedPage(){
                             </div>
                             <div className="MyInfo_Main_section_bar">
                                 <div className="MyInfo_Main_section_bar_comment">
-                                    이직할까 말까 고민될 땐,
+                                    <span>이직할까 말까 고민될 땐,</span>
                                     <div>내 커리어 중간점검</div>
                                 </div>
                                 <div className="MyInfo_Main_section_bar_img">

@@ -268,6 +268,14 @@ function Section(props){
                             </svg>
                             <div className="section_list_title">
                                 채용공고
+                                <svg
+                                width="16px" height = "16px"
+                                viewBox="0 0 18 18"
+                                >
+                                    <path
+                                    d = "m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                                    ></path>
+                                </svg>
                             </div>
                         </div>
                     </li>
@@ -281,6 +289,14 @@ function Section(props){
                             </svg>
                             <div className="section_list_title">
                                 내 프로필
+                                <svg
+                                width="16px" height = "16px"
+                                viewBox="0 0 18 18"
+                                >
+                                    <path
+                                    d = "m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                                    ></path>
+                                </svg>
                             </div>
                         </div>
                     </li>
@@ -294,6 +310,14 @@ function Section(props){
                             </svg>
                             <div className="section_list_title">
                                 매치업
+                                <svg
+                                width="16px" height = "16px"
+                                viewBox="0 0 18 18"
+                                >
+                                    <path
+                                    d = "m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                                    ></path>
+                                </svg>
                             </div>
                         </div>
                     </li>
@@ -307,6 +331,14 @@ function Section(props){
                             </svg>
                             <div className="section_list_title">
                                 직군별 연봉
+                                <svg
+                                width="16px" height = "16px"
+                                viewBox="0 0 18 18"
+                                >
+                                    <path
+                                    d = "m11.955 9-5.978 5.977a.563.563 0 0 0 .796.796l6.375-6.375a.563.563 0 0 0 0-.796L6.773 2.227a.562.562 0 1 0-.796.796L11.955 9z"
+                                    ></path>
+                                </svg>
                             </div>
                         </div>
                     </li>

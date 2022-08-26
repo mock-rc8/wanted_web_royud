@@ -180,89 +180,101 @@ function LoginPopupComp(props){
             className="login_popup_bg"
             onClick={login_popup_disabled}
             ></div>
-            <div className="login_popup_main">
-                <div className="login_popup_top_logo">
-                </div>
                 {/* 로그인 창 */}
                 {
                     sign_in_popup
-                    ?<div className="login_popup_body">
-                        <div className="login_popup_title_wrap">
-                            <div className="login_popup_title">
-                                직장인을 위한 <br />
-                                커리어 플랫폼, 원티드!
+                    ?<div className="login_popup_main">
+                        <div className="login_popup_top_logo">
+                            wanted
+                            <svg
+                            width="24" height = "24"
+                            viewBox="0 0 24 24" color="#999"
+                            onClick={login_popup_disabled}
+                            >
+                                <path
+                                fill = "currentColor"
+                                d = "M17.97 19.03a.75.75 0 001.06-1.06l-6.5-6.5a.75.75 0 00-1.06 0l-6.5 6.5a.75.75 0 001.06 1.06L12 13.06l5.97 5.97zM12 10.94L6.03 4.97a.75.75 0 00-1.06 1.06l6.5 6.5a.75.75 0 001.06 0l6.5-6.5a.75.75 0 00-1.06-1.06L12 10.94z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div className="login_popup_body">
+                            <div className="login_popup_title_wrap">
+                                <div className="login_popup_title">
+                                    직장인을 위한 <br />
+                                    커리어 플랫폼, 원티드!
+                                </div>
+                                <div className="login_popup_subtitle">
+                                    커리어 성장과 행복을 위한 여정 <br />
+                                    지금 원티드에서 시작하세요.
+                                </div>
                             </div>
-                            <div className="login_popup_subtitle">
-                                커리어 성장과 행복을 위한 여정 <br />
-                                지금 원티드에서 시작하세요.
-                            </div>
-                        </div>
-                        <div className="login_for_email_wrap">
-                            <label className="login_for_email_label">
-                                이메일
-                            </label>
-                            <div className= {email_class}>
-                                <input
-                                type="text"
-                                placeholder="이메일을 입력해 주세요."
-                                value = {email_value} onChange = {change_email_value}
-                                onKeyDown={e => {if(e.key === "Enter"){user_checking()}}}
-                                />
-                                <div className="email_error_comment">
-                                    올바른 이메일 형식을 입력해주세요.
+                            <div className="login_for_email_wrap">
+                                <label className="login_for_email_label">
+                                    이메일
+                                </label>
+                                <div className= {email_class}>
+                                    <input
+                                    type="text"
+                                    placeholder="이메일을 입력해 주세요."
+                                    value = {email_value} onChange = {change_email_value}
+                                    onKeyDown={e => {if(e.key === "Enter"){user_checking()}}}
+                                    />
+                                    <div className="email_error_comment">
+                                        올바른 이메일 형식을 입력해주세요.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button
-                        className="login_for_email_btn"
-                        onClick={() => {
-                            user_checking();
-                        }}
-                        >
-                            <span>이메일로 계속하기</span>
-                        </button>
-                        <div className="login_for_or">
-                            or
-                        </div>
-                        <div className="login_for_other">
-                            다음 계정으로 계속하기
-                        </div>
-                        <ul className="login_for_social_lists">
-                            <li className="login_for_social_list">
-                                <div className="login_for_social_ico kakao"></div>
-                                <div className="login_for_social_name">
-                                    Kakao
-                                </div>
-                            </li>
-                            <li className="login_for_social_list">
-                                <div className="login_for_social_ico facebook">
+                            <button
+                            className="login_for_email_btn"
+                            onClick={() => {
+                                user_checking();
+                            }}
+                            >
+                                <span>이메일로 계속하기</span>
+                            </button>
+                            <div className="login_for_or">
+                                or
+                            </div>
+                            <div className="login_for_other">
+                                다음 계정으로 계속하기
+                            </div>
+                            <ul className="login_for_social_lists">
+                                <li className="login_for_social_list">
+                                    <div className="login_for_social_ico kakao"></div>
+                                    <div className="login_for_social_name">
+                                        Kakao
+                                    </div>
+                                </li>
+                                <li className="login_for_social_list">
+                                    <div className="login_for_social_ico facebook">
 
-                                </div>
-                                <div className="login_for_social_name">
-                                    Facebook
-                                </div>
-                            </li>
-                            <li className="login_for_social_list">
-                                <div className="login_for_social_ico google">
+                                    </div>
+                                    <div className="login_for_social_name">
+                                        Facebook
+                                    </div>
+                                </li>
+                                <li className="login_for_social_list">
+                                    <div className="login_for_social_ico google">
 
-                                </div>
-                                <div className="login_for_social_name">
-                                    Google
-                                </div>
-                            </li>
-                            <li className="login_for_social_list">
-                                <div className="login_for_social_ico apple">
+                                    </div>
+                                    <div className="login_for_social_name">
+                                        Google
+                                    </div>
+                                </li>
+                                <li className="login_for_social_list">
+                                    <div className="login_for_social_ico apple">
 
-                                </div>
-                                <div className="login_for_social_name">
-                                    Apple
-                                </div>
-                            </li>
-                        </ul>
-                        <div className="login_text">
-                            걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.
-                            <br />
-                            회원가입 시 <span>개인정보 처리방침</span>과 <span>이용약관</span>을 확인하였으며, 동의합니다.
+                                    </div>
+                                    <div className="login_for_social_name">
+                                        Apple
+                                    </div>
+                                </li>
+                            </ul>
+                            <div className="login_text">
+                                걱정마세요! 여러분의 지원 활동은 SNS에 노출되지 않습니다.
+                                <br />
+                                회원가입 시 <span>개인정보 처리방침</span>과 <span>이용약관</span>을 확인하였으며, 동의합니다.
+                            </div>
                         </div>
                     </div>
                     :null
@@ -270,78 +282,107 @@ function LoginPopupComp(props){
                 {
                     sign_up_popup
                     // 회원가입 창
-                    ?<div className="login_popup_body">
-                        <div className="login_for_email_wrap">
-                            <label className="login_for_email_label">
-                                이름
-                            </label>
-                            <div className= {email_class}>
-                                <input
-                                type="text"
-                                placeholder="이름을 입력해 주세요."
-                                value = {name_value} onChange = {change_name_value}
-                                />
-                            </div>
-                        </div>
-                        <div className="login_for_email_wrap">
-                            <label className="login_for_email_label">
-                                휴대폰 번호
-                            </label>
-                            <div className= {email_class}>
-                                <input
-                                type="text"
-                                placeholder="(예시)01012345678"
-                                value = {phone_value} onChange = {change_phone_value}
-                                />
-                            </div>
-                        </div>
-                        <div className="login_for_email_wrap">
-                            <label className="login_for_email_label">
-                                비밀번호
-                            </label>
-                            <div className= {email_class}>
-                                <input
-                                type="password"
-                                placeholder="비밀번호를 입력해 주세요."
-                                value = {password_value} onChange = {change_password_value}
-                                />
-                            </div>
-                        </div>
-                        <button
-                            className="login_for_email_btn"
-                            onClick={sign_up_btn}
+                    ?<div className="login_popup_main">
+                        <div className="login_popup_top_logo">
+                            회원가입
+                            <svg
+                            width="24" height = "24"
+                            viewBox="0 0 24 24" color="#999"
+                            onClick={login_popup_disabled}
                             >
-                                <span>회원가입하기</span>
-                            </button>
+                                <path
+                                fill = "currentColor"
+                                d = "M17.97 19.03a.75.75 0 001.06-1.06l-6.5-6.5a.75.75 0 00-1.06 0l-6.5 6.5a.75.75 0 001.06 1.06L12 13.06l5.97 5.97zM12 10.94L6.03 4.97a.75.75 0 00-1.06 1.06l6.5 6.5a.75.75 0 001.06 0l6.5-6.5a.75.75 0 00-1.06-1.06L12 10.94z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div className="login_popup_body">
+                            <div className="login_for_email_wrap">
+                                <label className="login_for_email_label">
+                                    이름
+                                </label>
+                                <div className= {email_class}>
+                                    <input
+                                    type="text"
+                                    placeholder="이름을 입력해 주세요."
+                                    value = {name_value} onChange = {change_name_value}
+                                    />
+                                </div>
+                            </div>
+                            <div className="login_for_email_wrap">
+                                <label className="login_for_email_label">
+                                    휴대폰 번호
+                                </label>
+                                <div className= {email_class}>
+                                    <input
+                                    type="text"
+                                    placeholder="(예시)01012345678"
+                                    value = {phone_value} onChange = {change_phone_value}
+                                    />
+                                </div>
+                            </div>
+                            <div className="login_for_email_wrap">
+                                <label className="login_for_email_label">
+                                    비밀번호
+                                </label>
+                                <div className= {email_class}>
+                                    <input
+                                    type="password"
+                                    placeholder="비밀번호를 입력해 주세요."
+                                    value = {password_value} onChange = {change_password_value}
+                                    />
+                                </div>
+                            </div>
+                            <button
+                                className="login_for_email_btn"
+                                onClick={sign_up_btn}
+                                >
+                                    <span>회원가입하기</span>
+                                </button>
+                        </div>
                     </div>
                     :null
                 }
                 {
                     password_popup
-                    ?<div className="login_popup_body">
-                        <div className="login_for_email_wrap">
-                            <label className="login_for_email_label">
-                                비밀번호
-                            </label>
-                            <div className= {email_class}>
-                                <input
-                                type="password"
-                                placeholder="비밀번호를 입력해 주세요."
-                                value = {password_value} onChange = {change_password_value}
-                                />
-                            </div>
+                    ?<div className="login_popup_main">
+                        <div className="login_popup_top_logo">
+                            비밀번호 입력
+                            <svg
+                            width="24" height = "24"
+                            viewBox="0 0 24 24" color="#999"
+                            onClick={login_popup_disabled}
+                            >
+                                <path
+                                fill = "currentColor"
+                                d = "M17.97 19.03a.75.75 0 001.06-1.06l-6.5-6.5a.75.75 0 00-1.06 0l-6.5 6.5a.75.75 0 001.06 1.06L12 13.06l5.97 5.97zM12 10.94L6.03 4.97a.75.75 0 00-1.06 1.06l6.5 6.5a.75.75 0 001.06 0l6.5-6.5a.75.75 0 00-1.06-1.06L12 10.94z"
+                                ></path>
+                            </svg>
                         </div>
-                        <button
-                        className="login_for_email_btn"
-                        onClick={sign_in_btn}
-                        >
-                            <span>로그인</span>
-                        </button>
+                        <div className="login_popup_body">
+                            <div className="login_for_email_wrap">
+                                <label className="login_for_email_label">
+                                    비밀번호
+                                </label>
+                                <div className= {email_class}>
+                                    <input
+                                    type="password"
+                                    placeholder="비밀번호를 입력해 주세요."
+                                    value = {password_value} onChange = {change_password_value}
+                                    />
+                                </div>
+                            </div>
+                            <button
+                            className="login_for_email_btn"
+                            onClick={sign_in_btn}
+                            >
+                                <span>로그인</span>
+                            </button>
+                        </div>
                     </div>
                     :null
 
                 }
-            </div>
         </LoginPopup>
     )
 }

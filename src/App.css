@@ -25,6 +25,7 @@
   border: 1px solid #ececec; border-radius: 4px;
   color: #333;
   display: flex;
+  margin-top: 30px;
 }
 .employment_list {
   border-right: 1px solid #ececec;
@@ -538,27 +539,39 @@
   border: 1px solid #36f; border-radius: 25px;
 }
 .MyInfo_Main_section_bar {
-  width: 750px; height: 48px;
+  width: 750px; height: 61px;
   border-radius: 3px;
   margin-bottom: 20px; padding: 24px 20px;
   background: linear-gradient(90deg,#ddebff -.28%,#b7d8ff);
   cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
 }
-.MyInfo_Main_section_bar_comment {
+.MyInfo_Main_section_bar_comment span {
   font-size: 20px; font-weight: 400;
   color: #3a60d9;
+  margin-bottom: 10px;
+  display: block;
 }
 .MyInfo_Main_section_bar_comment div {
+  font-size: 17px; font-weight: 700;
+  color: #3a60d9;
+}
+.MyInfo_Main_section_bar_comment button {
   font-size: 18px; font-weight: 700;
+  display: block;
+  background-color: #5071dc;
+  color: #fff; padding: 0 20px;
+  font-size: 13px; font-weight: 700;
+  height: 32px; border-radius: 25px;
+  margin-top: 10px;
 }
 .MyInfo_Main_section_bar_img {
   width: 352px; height: 103px;
   position: relative;
 }
 .MyInfo_Main_section_bar_img img{
-  width: 100%;
-  position: absolute; left: -10px; top: -5px;
+  height: 100%;
+  position: absolute; right: 10px; top: -5px;
 }
 .MyInfo_Main_section_list {
   border-top: 1px solid #e1e2e3;
@@ -604,4 +617,116 @@
   color: #36f;
   background-color: #fff;
   border: 1px solid #36f; border-radius: 25px;
+}
+.MyInfo_Main_section_school_company_wrap {
+  width: 728px; padding: 0 30px; margin-top: 13px;
+}
+.MyInfo_Main_section_input {
+  padding: 15px 0;
+}
+.MyInfo_Main_section_input label {
+  padding-right: 118px;
+  color: #999;
+  font-size: 16px;
+}
+.MyInfo_Main_section_input button {
+  width: calc(100% - 150px);
+  text-align: left;
+  padding: 12px 0;
+  color: #ccc;
+  font-size: 16px; font-weight: 400;
+  border-bottom: 1px solid #e1e2e3;
+  position: relative;
+  cursor: pointer;
+}
+.MyInfo_Main_section_input button::after {
+  position: absolute; right: 0; top: 30%;
+  content: "›";
+  width: 24px; height: 25px;
+  color: #999;
+  font-size: 24px;
+}
+.MyInfo_Main_section_company_tenure_wrap {
+  margin: 5px 0 25px;
+  padding-left: 150px;
+}
+.MyInfo_Main_section_company_tenure {
+  font-size: 14px; font-weight: 400;
+  display: inline-block;
+}
+.MyInfo_Main_section_company_tenure select {
+  color: #ccc;
+}
+.MyInfo_Main_section_company_tenure select option {
+  color: #333;
+}
+.MyInfo_Main_section_company_tenure span {
+  margin: 0 10px;
+}
+.MyInfo_Main_section_company_now {
+  margin-top: 14px;
+  font-size: 14px;font-weight: 400;
+  color: #999;
+}
+.MyInfo_Main_section_company_now input {
+  width: 13px; height: 13px;
+  appearance: auto;
+  margin: 4px 5px 0 0;
+}
+.MyInfo_Main_section_textarea {
+  margin-top: 15px;
+  padding: 0 30px;
+}
+.MyInfo_Main_section_textarea_title {
+  font-size: 16px; font-weight: 400;
+  color: #999;
+  margin-bottom: 11px;
+}
+.MyInfo_Main_section_textarea_comment {
+  font-size: 14px; font-weight: 400;
+  line-height: 1.57;
+  color: #ccc;
+  margin-bottom: 17px;
+}
+.MyInfo_Main_section_textarea textarea {
+  width: 688px; height: 192px;
+  border: 1px solid #e1e2e3; border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 16px; font-weight: 400;
+  line-height: 1.63; color: #333;
+  resize: none; outline: none;
+}
+.MyInfo_Main_footer {
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #e1e2e3;
+  padding: 15px 0;
+  position: fixed; left: 0; bottom: 0;
+}
+.MyInfo_Main_footer_wrap {
+  width: 1060px;
+  margin: 0 auto;
+  text-align: right;
+}
+.MyInfo_Main_footer_wrap button {
+  width: 190px; height: 50px;
+  border-radius: 3px;
+  font-size: 17px; font-weight: 600;
+  margin-left: 20px;
+}
+.MyInfo_Main_footer_set {
+  background: #fff;
+  border: 1px solid #e1e2e3;
+  color: #333;
+  position: relative;
+}
+.MyInfo_Main_footer_set::after {
+  position: absolute; left: 10%;top: 18%;
+  content: "‹";
+  font-size: 25px;
+  margin-right: 15px;
+}
+.MyInfo_Main_footer_complete {
+  background-color: #ccc;
+  color: #fff;
 }

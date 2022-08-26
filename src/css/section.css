@@ -118,6 +118,7 @@
   line-height: 24px;
   color: #333;
   margin: 17px 0 8px;
+  display: flex; align-items: center;
 }
 .section_list:hover .section_list_title {
   text-decoration: underline;
