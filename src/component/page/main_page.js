@@ -6,6 +6,9 @@ import SectionButton from "../common/sectionBtn";
 import axios from "axios";
 import slideBox from "../../db/slide.json"
 
+import { nowPage } from "../../recoil/recoil";
+import { useRecoilState } from "recoil";
+
 import { useEffect, useState } from "react";
 
 function SectionList(props){
@@ -483,6 +486,11 @@ function PageMain(){
 }
 
 export default function MainPage(){
+    const [nowPaged, set_nowPaged] = useRecoilState(nowPage)
+    useEffect(() => {
+        set_nowPaged("/")
+    }, [])
+
     return(
         <div className="Mainpage">
             <Header />

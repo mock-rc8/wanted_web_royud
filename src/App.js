@@ -8,6 +8,7 @@ import JobsfeedPage from './component/page/jobsfeed';
 import WdListPage from "./component/page/wdlist";
 import MyWantedPage from "./component/page/mywanted";
 import ProfilePage from "./component/page/profile";
+import CommunityPage from "./component/page/communityPage";
 
 import axios from "axios"
 
@@ -54,6 +55,7 @@ function App() {
         <Route path="/wdlist" element = {<WdListPage />} />
         <Route path="/mywanted" element = {<MyWantedPage />} />
         <Route path="/profile" element = {<ProfilePage />} />
+        <Route path="/community" element = {<CommunityPage />} />
       </Routes>
 
       </BrowserRouter>

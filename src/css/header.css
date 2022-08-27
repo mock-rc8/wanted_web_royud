@@ -43,7 +43,7 @@ header {
   box-shadow: inset 0 -2px #258bf7;
 }
 .header_menu_list.selected:hover {
-  box-shadow: inset 0 -2px #f8f8f8;
+  box-shadow: inset 0 -2px #d6d6d6;
 }
 .header_another_wrap {
   padding: 10px 0;
@@ -169,6 +169,7 @@ header {
 }
 .login_for_email_input {
   margin-top: 11px; width: 360px;
+  display: flex;
 }
 .login_for_email_input input {
   width: 328px; height: 50px;
@@ -176,11 +177,43 @@ header {
   border-radius: 5px;
   border: 1px solid #e1e2e3;
 }
+.login_for_email_input select {
+  width: 360px; height: 50px;
+  padding: 0 15px;
+  border-radius: 5px; font-size: 15px;
+  border: 1px solid #e1e2e3;
+
+}
+.login_for_email_select_ico {
+  position: relative;
+}
+.login_for_email_select_ico::after {
+  content: "›";
+  position: absolute; right: 5px; top: -45px;
+  width: 20px; height: 20px;
+  font-size: 25px;
+}
+.login_for_email_input button {
+  border-radius: 5px;
+  background-color: #f2f4f7;
+  font-weight: 700;
+  color: #ccc;
+  margin-left: 10px; padding: 16px 15px 14px;
+  min-width: 117px;
+}
+.input_disabled {
+  background-color: #f2f4f7;
+}
 .email_error_comment {
   color: #fe415c;
   margin-top: 6px;
   font-size: 12px;
   display: none;
+}
+.login_for_email_comment {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #767676;
 }
 .login_for_email_input.error input {
   border: 1px solid #fe415c;
@@ -200,6 +233,22 @@ header {
   background-color: #36f;
   font-size: 16px; font-weight: 600;
   color: #fff;
+}
+.login_for_email_check input {
+  cursor: pointer;
+  width: 13px; height: 13px;
+  appearance: auto;
+  margin-right: 10px;
+}
+.login_for_email_check {
+  color: #939393;
+  font-size: 15px;
+  padding-bottom: 14px;
+}
+.login_for_email_check.title {
+  color: #333;
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 15px;
 }
 .login_for_or {
   font-size: 14px; font-weight: 500;
@@ -225,6 +274,7 @@ header {
   width: 56px; height: 56px;
   margin: 0 auto 8px;
   border-radius: 28px;
+  display: flex; justify-content: center; align-items: center;
 }
 .login_for_social_ico.kakao {
   background-color: #fee500;

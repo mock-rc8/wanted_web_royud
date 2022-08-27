@@ -12,3 +12,7 @@ export const Login_profile = atom({
     key: "Login_profile",
     default : []
 })
+export const nowPage = atom({
+    key : "nowPage",
+    default: "/"
+})
