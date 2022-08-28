@@ -21,6 +21,10 @@
 .main_page {
   padding-top: 25px;
 }
+.main_page_wrap {
+  width: 1060px;
+  margin: 0 auto;
+}
 .employment_lists {
   border: 1px solid #ececec; border-radius: 4px;
   color: #333;
@@ -171,6 +175,37 @@
 .category_select_wrap {
   width: 1060px; margin: 0 auto;
   display: flex;
+  position: relative;
+}
+.jobcategory_lists {
+  width: 190px;
+  position: absolute; left: 0; top: 40px; z-index: 99;
+  padding: 15px 0;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
+  background-color: #fff;
+  border: 1px solid #e1e2e3; border-radius: 5px;
+  display: none;
+}
+.jobcategory_lists.Active {
+  display: block;
+}
+.jobcategory_list {
+  padding: 11px 25px 9px;
+  font-size: 16px;
+  color: #333333;
+  cursor: pointer;
+}
+.duty_category_lists {
+  width: 190px;
+  position: absolute; left: 140px; top: 40px; z-index: 99;
+  padding: 15px 0;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
+  background-color: #fff;
+  border: 1px solid #e1e2e3; border-radius: 5px;
+  display: none;
+}
+.duty_category_lists.Active {
+  display: block;
 }
 .category_select_main {
   display: flex; align-items: center;
@@ -189,9 +224,24 @@
   width: 26px;
   height: 26px;
   display: flex; justify-content: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.category_select_main_btn.Active {
+  border-color: #767676;
+  transform: rotate(180deg);
 }
 .category_select_main_btn svg {
   margin-top: 8px;
+}
+.category_select_sub {
+  display: flex; align-items: center;
+  cursor: pointer;
+}
+.category_select_sub span {
+  padding-top: 3px; margin-right: 15.5px;
+  font-size: 24px; font-weight: 400;
+  line-height: 29px;
+  color: #333;
 }
 .category_select_bar {
   background-color: #ececec;
@@ -729,4 +779,193 @@
 .MyInfo_Main_footer_complete {
   background-color: #ccc;
   color: #fff;
+}
+.company_detail_wrap {
+  width: 100%;
+  display: flex; justify-content: space-between;
+}
+.company_detail_left {
+  width: calc(100% - 360px);
+}
+.company_detail_right {
+  width: 340px;
+}
+.company_detail_right_box {
+  border: 1px solid #e1e2e3; border-radius: 3px;
+  background-color: #fff;
+  padding: 24px 20px;
+  position: sticky; top: 75px;
+}
+.company_detail_box_title {
+  font-size: 15px; font-weight: 600;
+  color: #333;
+}
+.company_detail_box_lists {
+  display: flex; align-items: center;
+  margin: 24px 0;
+}
+.company_detail_box_list {
+  width: 50%;
+}
+.company_detail_box_list_title {
+  font-size: 14px;font-weight: 600;
+  color: #999;
+  margin-bottom: 8px;
+}
+.company_detail_box_list_desc {
+  font-size: 15px; font-weight: 600;
+  color: #333;
+}
+.company_img_lists_box {
+  width: 700px; height: 504px;
+  background-color: #333;
+}
+.company_employ_title_wrap {
+  margin: 40px 0 30px;
+}
+.company_employ_title {
+  color: #333;
+  font-size: 22px; font-weight: 600;
+  margin: 0 0 10px;
+}
+.company_employ_sub_wrap {
+  display: flex; align-items: center;
+}
+.company_employ_sub_companyname {
+  color: #333; margin-right: 10px;
+  font-size: 14px; font-weight: 600;
+}
+.company_employ_sub_location {
+  margin-left: 10px; padding: 0 10px;
+  color: #999;
+  border-left: 1px solid #e1e2e3;
+  font-size: 14px;
+}
+.company_employ_sub_tag_lists {
+  margin-top: 20px;
+}
+.company_employ_sub_tag_list {
+  display: inline-block;
+  margin: 0 6px 10px 0; padding: 9px 14px;
+  font-size: 12px; font-weight: 500;
+  line-height: 1;
+  color: #333;
+  background-color: #f3f5f8;
+  border-radius: 25px;
+}
+.actively_employ_company_wrap {
+  width: 1060px;
+  margin: 20px 0 40px;
+}
+.actively_employ_company_title {
+  font-size: 22px; font-weight: 600;
+  color: #333;
+  margin-bottom: 14px;
+}
+.actively_employ_company_lists {
+  width: 1080px; margin: 0 -10px;
+  display: flex;
+}
+.actively_employ_company_list {
+  width: 20%; height: 271px;
+  margin: 0 10px;
+  border: 1px solid #e1e2e3; border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.actively_employ_company_img {
+  height: 50%; width: 100%;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+.actively_employ_company_logo {
+  position: absolute; top: calc(50% - 25px); left: 16px;
+  width: 50px; height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: 50%;
+  border: 1px solid #efefef;
+}
+.actively_employ_company_name {
+  margin: 38px 16px 4px;
+  font-size: 16px; font-weight: 600;
+  letter-spacing: -.3px;
+  color: #333;
+  line-height: 1.2;
+}
+.actively_employ_company_position {
+  margin: 6px 16px 0;
+  font-size: 14px;font-weight: 400;
+  letter-spacing: -.2px;
+  color: #999;
+}
+.company_employ_desc {
+  color: #333;
+  font-size: 16px; font-weight: 400;
+  line-height: 1.75;
+  margin: 40px 0;
+}
+.company_employ_skill_title {
+  margin: 20px 0 0; color: #333;
+  font-size: 16px; font-weight: 600;
+}
+.company_employ_skill_lists {
+  display: flex; align-items: center;
+  margin-top: 5px;
+}
+.company_employ_skill_list {
+  background-color: #e4f4ec;
+  border-radius: 20px;
+  padding: 9px 14px;
+  font-size: 12px; font-weight: 600;
+  line-height: 14.4px;
+  color: #333;
+  margin-right: 5px;
+}
+.company_employ_location {
+  padding: 20px 0 40px;
+  border-top: 1px solid #eee;
+}
+.company_employ_location_list {
+  margin-bottom: 20px;
+}
+.company_employ_location_menu {
+  color: #999;
+  width: 80px;
+  font-size: 16px; font-weight: 600;
+  display: inline-block;
+}
+.company_employ_location_desc {
+  color: #333;
+  width: calc(100% - 80px);
+  display: inline-block;
+  font-size: 16px; font-weight: 600;
+}
+.company_employ_introduce_wrap {
+  border-radius: 3px;
+  border: 1px solid #e1e2e3;
+  padding: 20px; margin-top: 80px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.company_employ_introduce {
+  display: flex; align-items: center;
+}
+.company_employ_introduce_logo {
+  background-position: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px; height: 50px;
+  margin-right: 15px;
+}
+.company_employ_introduce_name {
+  color: #333;
+  font-size: 15px; font-weight: 600;
+  margin: 0 0 5px;
+}
+.company_employ_introduce_sub {
+  color: #999;
+  font-size: 15px; font-weight: 600;
 }

@@ -45,11 +45,13 @@ function SectionList(props){
 function Section(props){
     const title = props.title;
     const title_ico = props.title_ico;
-    const category = props.category;
     const list_style = props.list_style;
-    const section_list_data = props.section_list_data;
+    const category = props.category;
 
-    const move_std = -100;
+    const [section_category, set_section_category] = useState([]);
+    const [section_list_data, set_section_list_data] = useState([]);
+
+    const move_std = -200;
     const move_ani = 0.3;
     const [right_move_check, set_right_move_check] = useState(0);
     
@@ -57,13 +59,13 @@ function Section(props){
     const [arrowboxLeft, setArrowboxLeft] = useState("section_category_arrow_box left hidden")
     
     const category_move_right = () => {
-        if(right_move_check < 2){
+        if(right_move_check < 6){
             set_right_move_check(right_move_check + 1)
         }
         if(right_move_check === 0){
             setArrowboxLeft("section_category_arrow_box left")
         }
-        if(right_move_check === 1){
+        if(right_move_check === 5){
             setTimeout(() => {
                 setArrowboxRight("section_category_arrow_box right hidden")
             }, move_ani * 1000);
@@ -73,7 +75,7 @@ function Section(props){
         if(right_move_check > 0){
             set_right_move_check(right_move_check - 1)
         }
-        if(right_move_check === 2){
+        if(right_move_check === 6){
             setArrowboxRight("section_category_arrow_box right")
         }
         if(right_move_check === 1){
@@ -83,16 +85,36 @@ function Section(props){
         }
     }
 
+    const [list_click_idx, set_list_click_idx] = useState(1);
+
     const btn_Active = (e) => {
         const E_tar = e.target
         const parEl = E_tar.parentNode;
         const parChi = parEl.children;
         const idx = Array.from(parChi).indexOf(E_tar)
 
-
-
-        console.log(idx);
+        set_list_click_idx(idx + 1)
     }
+    // -----------------------------------------------------------
+    const url = "https://prod.serverhwan.shop";
+
+    const homeView = async() => {
+        try {
+            const data = await axios({
+                method : "get",
+                url: `${url}/home?homecategoryIdx=${list_click_idx}`
+            });
+            set_section_category(data.data.result.categoryList)
+            set_section_list_data(data.data.result.contents)
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+    useEffect(() => {
+        homeView();
+    }, [list_click_idx])
+    // -----------------------------------------------------------
     return (
         <div className='section'>
         <div className='section_wrap'>
@@ -130,7 +152,7 @@ function Section(props){
                 </span>
             </div>
             {
-                category
+                section_category && category
                 ?<div className="section_category">
                     <div className="section_category_box">
                         <ul
@@ -141,8 +163,8 @@ function Section(props){
                         }}
                         >
                             {
-                                category.map((list) => (
-                                    list.homecategoryIdx === 1
+                                section_category.map((list) => (
+                                    list.homecategoryIdx === list_click_idx
                                     ?<li
                                     className="section_category_list current"
                                     key={list.homecategoryIdx}
@@ -412,7 +434,7 @@ function PageMain(){
                 <Section
                 title = "나에게 필요한 커리어 인사이트"
                 title_ico = "true"
-                category = {section_category}
+                category = "true"
                 list_style = "many"
                 section_list_data = {section_list_data}
                  />

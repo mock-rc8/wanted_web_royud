@@ -599,7 +599,7 @@ function HeaderLogoWrap(){
             <Link to = "/">
                 <img
                 className='header_logo'
-                src='./images/wanted_logo.png'
+                src='/images/wanted_logo.png'
                 />
             </Link>
         </div>
