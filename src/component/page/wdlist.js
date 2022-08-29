@@ -78,9 +78,9 @@ export default function WdListPage(){
     const [searchCaegories, set_searchCaegories] = useState([]);
     const [jobCategory, set_jobCategory] = useState("");
     const [dutyCategory, set_dutyCategory] = useState("");
-    const [act_company_list, set_act_company_list] = useState([])
+    const [act_company_list, set_act_company_list] = useState([]);
     const isLogined = useRecoilValue(isLogin);
-
+    //비회원용
     const WdListView = async() => {
         try {
             const data = await axios({
@@ -97,10 +97,41 @@ export default function WdListPage(){
             console.log(err);
         }
     }
+    //회원용
+    const WdListView_Logined = async() => {
+        try {
+            const data = await axios({
+                method: "get",
+                url : `${url}/positions/${localStorage.getItem("userIdx")}?jobIdx=${jobIdx}&dutyIdx=${dutyIdx}`,
+                headers: {
+                    "X-ACCESS-TOKEN": localStorage.getItem("token"),
+                    userIdx: localStorage.getItem("userIdx")
+                }
+            })
+            set_company_list(data.data.result.employmentList)
+            set_dutyCategory(data.data.result.dutyCategory.duty)
+            set_jobCategory(data.data.result.jobCategory.job)
+            set_searchCaegories(data.data.result.searchCaegories)
+            set_act_company_list(data.data.result.companyList)
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
     useEffect(() => {
-        WdListView();
-        console.log(act_company_list);
-    }, [isLogined, jobIdx, dutyIdx ])
+        switch(isLogined){
+            case true:
+                WdListView_Logined();
+                break;
+            case false:
+                WdListView();
+                break;
+            default:
+                break;
+        }
+    }, [isLogined, jobIdx, dutyIdx])
+
     // --------------------------------------------------
     const [select_head, set_select_head] = useState("category_select_another")
 
@@ -302,10 +333,11 @@ export default function WdListPage(){
                     }
                     <ul className="company_lists">
                         {
-                            company_list.map((list) => (
-                                <CompanyList
+                            company_list.map((list) => {
+                                return <CompanyList
                                 key = {list.employmentIdx}
                                 idx = {list.employmentIdx}
+                                isBookmark = {list.isBookmark}
                                 comp_img = {list.thumbnail}
                                 title  = {list.title}
                                 comp_name = {list.companyName}
@@ -313,7 +345,7 @@ export default function WdListPage(){
                                 region = {list.region}
                                 reward = {list.reward}
                                  />
-                            ))
+                            })
                         }
                     </ul>
                 </div>

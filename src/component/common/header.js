@@ -692,9 +692,11 @@ function HeaderAnotherWrap(){
                             <li className="my_mini_space_list">
                                 좋아요
                             </li>
-                            <li className="my_mini_space_list">
-                                북마크
-                            </li>
+                            <Link to ="/bookmarks">
+                                <li className="my_mini_space_list">
+                                    북마크
+                                </li>
+                            </Link>
                             <div className="my_mini_space_bar"></div>
                             <li className="my_mini_space_list">
                                 추천

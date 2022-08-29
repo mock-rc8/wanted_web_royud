@@ -27,7 +27,6 @@
 }
 .section_category_lists {
   display: flex;
-  width: 990px; margin-right: 20px;
 }
 .section_category_list {
   padding: 0 29px;

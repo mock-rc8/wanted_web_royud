@@ -10,6 +10,7 @@ import MyWantedPage from "./component/page/mywanted";
 import ProfilePage from "./component/page/profile";
 import CommunityPage from "./component/page/communityPage";
 import WdPage from "./component/page/wd";
+import BookmarksPage from "./component/page/bookmarks";
 
 import axios from "axios"
 
@@ -58,6 +59,7 @@ function App() {
         <Route path="/profile" element = {<ProfilePage />} />
         <Route path="/community" element = {<CommunityPage />} />
         <Route path="/wd/:idx" element = {<WdPage />} />
+        <Route path= "/bookmarks" element = {<BookmarksPage />} />
       </Routes>
 
       </BrowserRouter>

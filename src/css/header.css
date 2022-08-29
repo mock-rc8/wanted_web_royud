@@ -319,7 +319,7 @@ header {
 }
 .my_mini_space_lists {
   position: absolute; left: -20px; top: 24px;
-  width: 192px; height: 367px;
+  width: 192px;
   background-color: #ffffff;
   padding-top: 14px;
   border-radius: 10px;
@@ -352,7 +352,10 @@ header {
 }
 
 .my_mini_space_logout {
-  padding: 8px; text-align: center;
+  padding: 15px 0; text-align: center;
   font-size: 14px; font-weight: 500;
   color: #333;
+  background-color: #f7f7f7;
+  border-top: 1px solid #ececec;
+  border-radius: 0 0 10px 10px;
 }
