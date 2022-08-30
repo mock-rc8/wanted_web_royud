@@ -46,8 +46,9 @@
   color: #36f;
 }
 .section_category_arrow_box {
-  position: absolute; top:27%;
+  position: absolute; top: calc(100% - 50%);
   width: 80px; height: 52px;
+  transform: translateY(-50%);
   display: flex; align-items: center;
 }
 .section_category_arrow_box.hidden {

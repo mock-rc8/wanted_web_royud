@@ -2,7 +2,8 @@ import Header from "../common/header"
 import { isLogin } from "../../recoil/recoil"
 import { useEffect, useState } from "react"
 
-import { useRecoilValue, useResetRecoilState } from "recoil"
+import { nowPage } from "../../recoil/recoil"
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil"
 
 import CompanyList from "../common/company_list"
 
@@ -12,6 +13,12 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 export default function MyWantedPage(){
+    const [nowPaged, set_nowPage] = useRecoilState(nowPage);
+    useEffect(() => {
+        set_nowPage("/mywanted")
+    }, [])
+
+    // ---------------------------------------------------------------------
     //인포 state
     const [userImg, set_userImg] = useState("");
     const [userName, set_userName] = useState("");
