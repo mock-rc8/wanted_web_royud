@@ -1,5 +1,4 @@
 import Header from "../common/header"
-
 import { nowPage } from "../../recoil/recoil"
 import { useRecoilState } from "recoil"
 import { useEffect, useState } from "react"
@@ -7,7 +6,7 @@ import styled from "styled-components"
 import axios from "axios"
 
 import { isLogin } from "../../recoil/recoil"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function CommunityPage(){
     const [nowPaged, setnowPaged] = useRecoilState(nowPage);
@@ -28,7 +27,7 @@ export default function CommunityPage(){
     const [community_user_job, set_community_user_job] = useState("");
     const [community_user_myCareer, set_community_user_myCareer] = useState("");
 
-    //비회원 api
+    //비회원 추천 api
     const community_view = async() => {
         try {
             const data = await axios({
@@ -43,6 +42,7 @@ export default function CommunityPage(){
 
         }
     }
+    //회원 추천 api
     const community_view_login = async() => {
         try {
             const data = await axios({
@@ -65,7 +65,36 @@ export default function CommunityPage(){
 
         }
     }
+
+    // -------------------------------------------------------------------
+    //비회원 전체 api
+    const community_all_view = async() => {
+        try {
+            const data = await axios({
+                method: "get",
+                url: `${url}/communities/totals`
+            })
+        }
+        catch(err){
+
+        }
+    }
+
+    // -------------------------------------------------------------------
+    //비회원 나머지 api
+    const community_another_view = async() => {
+        try {
+            const data = await axios({
+                method: "get",
+                url: `${url}/communities?ctIdx=8`
+            })
+        }
+        catch(err){
+
+        }
+    }
     useEffect(() => {
+        community_another_view()
         switch(isLogind){
             case true:
                 community_view_login();
@@ -297,80 +326,82 @@ export default function CommunityPage(){
                                         <ul className="community_text_lists">
                                             {
                                                 community_text_lists.map((list) => (
-                                                    <li
+                                                    <Link
                                                     key={list.postingIdx}
-                                                    className="community_text_list">
-                                                        <div className="community_text_list_profile">
-                                                            <div
-                                                            className="community_text_list_profile_img"
-                                                            style={{backgroundImage: `url(${list.profileUrl})`}}
-                                                            ></div>
-                                                            <div className="community_text_list_profile_desc">
-                                                                <div className="community_text_list_profile_desc_box">
-                                                                    <div className="community_text_list_profile_name">
-                                                                        {list.name}
+                                                    to={`/community/post/${list.postingIdx}`} >
+                                                        <li className="community_text_list">
+                                                            <div className="community_text_list_profile">
+                                                                <div
+                                                                className="community_text_list_profile_img"
+                                                                style={{backgroundImage: `url(${list.profileUrl})`}}
+                                                                ></div>
+                                                                <div className="community_text_list_profile_desc">
+                                                                    <div className="community_text_list_profile_desc_box">
+                                                                        <div className="community_text_list_profile_name">
+                                                                            {list.name}
+                                                                        </div>
+                                                                        <div className="community_text_list_profile_tags">
+                                                                            <div className="community_text_list_profile_tag">
+                                                                                {list.career}
+                                                                            </div>
+                                                                            <div className="community_text_list_profile_tag">
+                                                                                {list.job}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="community_text_list_profile_tags">
-                                                                        <div className="community_text_list_profile_tag">
-                                                                            {list.career}
-                                                                        </div>
-                                                                        <div className="community_text_list_profile_tag">
-                                                                            {list.job}
-                                                                        </div>
+                                                                    <div className="community_text_list_time">
+                                                                        {list.date}
                                                                     </div>
                                                                 </div>
-                                                                <div className="community_text_list_time">
-                                                                    {list.date}
+                                                            </div>
+                                                            <div className="community_text_list_desc">
+                                                                <div className="community_text_list_title">
+                                                                    {list.title}
                                                                 </div>
+                                                                <div className="community_text_list_text">
+                                                                    {list.content}
+                                                                </div>
+                                                                <ul className="community_text_list_tags">
+                                                                    {
+                                                                        list.tags.map((tag) => (
+                                                                            <li
+                                                                            key={tag.ctIdx}
+                                                                            className="community_text_list_tag">
+                                                                                {tag.name}
+                                                                            </li>
+                                                                        ))
+                                                                    }
+                                                                </ul>
+                                                                <ul className="community_text_list_react">
+                                                                    <li className="community_text_list_react like">
+                                                                        <svg
+                                                                        width="18" height="18"
+                                                                        viewBox="0 0 18 18"
+                                                                        >
+                                                                            <path
+                                                                            fill="#666"
+                                                                            d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"
+                                                                            ></path>
+                                                                        </svg>
+                                                                        <span>{list.likeNum}</span>
+                                                                    </li>
+                                                                    <li className="community_text_list_react comment">
+                                                                        <svg
+                                                                        width="18" height="18"
+                                                                        viewBox="0 0 18 18"
+                                                                        >
+                                                                            <path
+                                                                            fill="#666"
+                                                                            transform="matrix(-1 0 0 1 18 0)"
+                                                                            d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"
+                                                                            ></path>
+                                                                        </svg>
+                                                                        <span>{list.commentNum}</span>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                        </div>
-                                                        <div className="community_text_list_desc">
-                                                            <div className="community_text_list_title">
-                                                                {list.title}
-                                                            </div>
-                                                            <div className="community_text_list_text">
-                                                                {list.content}
-                                                            </div>
-                                                            <ul className="community_text_list_tags">
-                                                                {
-                                                                    list.tags.map((tag) => (
-                                                                        <li
-                                                                        key={tag.ctIdx}
-                                                                        className="community_text_list_tag">
-                                                                            {tag.name}
-                                                                        </li>
-                                                                    ))
-                                                                }
-                                                            </ul>
-                                                            <ul className="community_text_list_react">
-                                                                <li className="community_text_list_react like">
-                                                                    <svg
-                                                                    width="18" height="18"
-                                                                    viewBox="0 0 18 18"
-                                                                    >
-                                                                        <path
-                                                                        fill="#666"
-                                                                        d="M13.353 2.214c.082.164.15.332.204.502.325 1.032.13 2.08-.396 3.092l-.105.191L16.253 6a.75.75 0 0 1 .743.648l.007.102v5.75a.75.75 0 0 1-.106.385l-.058.084-3.004 3.75a.75.75 0 0 1-.472.273L13.25 17H9.22a.75.75 0 0 1-.101-1.493l.102-.007h3.668l2.614-3.264V7.5h-3.91a.75.75 0 0 1-.604-1.195l.066-.077c.137-.14.36-.415.584-.778.5-.808.702-1.6.487-2.283a1.858 1.858 0 0 0-.113-.278c-.278-.551-1.075-.442-1.075-.056a3.17 3.17 0 0 1-.777 2.125c-.293.338-.59.555-.774.647l-.472.292c-.89.568-1.459 1.04-1.762 1.409l-.097.128-.058.095v.062l-.004.016-.006.093a.75.75 0 0 1-.641.641l-.102.007-.102-.007a.75.75 0 0 1-.648-.743V7.5H2.496v8h2.999l-.001-4.535.007-.102a.75.75 0 0 1 1.493.102v5.286l-.007.102a.75.75 0 0 1-.743.648H1.747l-.102-.007a.75.75 0 0 1-.648-.743v-9.5l.007-.102A.75.75 0 0 1 1.747 6h4.498l.066.005c.387-.38.92-.796 1.621-1.256l.472-.3.253-.154c.07-.035.217-.143.37-.32.226-.26.37-.576.403-.969l.008-.173c0-2.082 2.972-2.491 3.915-.619z"
-                                                                        ></path>
-                                                                    </svg>
-                                                                    <span>{list.likeNum}</span>
-                                                                </li>
-                                                                <li className="community_text_list_react comment">
-                                                                    <svg
-                                                                    width="18" height="18"
-                                                                    viewBox="0 0 18 18"
-                                                                    >
-                                                                        <path
-                                                                        fill="#666"
-                                                                        transform="matrix(-1 0 0 1 18 0)"
-                                                                        d="M9 1c4.377 0 8 3.14 8 7s-3.623 7-8 7c-.317 0-.593-.026-.954-.088l-.395-.074-.205-.043-3.295 2.089a.75.75 0 0 1-.968-.143l-.067-.09a.75.75 0 0 1 .143-.968l.09-.067 3.55-2.25a.75.75 0 0 1 .551-.1l.652.132.301.052c.228.036.408.05.597.05 3.592 0 6.5-2.52 6.5-5.5S12.592 2.5 9 2.5C5.407 2.5 2.5 5.02 2.5 8c0 1.858 1.039 3.573 2.773 4.348a.75.75 0 1 1-.612 1.37C2.37 12.693 1 10.432 1 8c0-3.86 3.622-7 8-7z"
-                                                                        ></path>
-                                                                    </svg>
-                                                                    <span>{list.commentNum}</span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
+                                                        </li>
+                                                    </Link>
                                                 ))
                                             }
 

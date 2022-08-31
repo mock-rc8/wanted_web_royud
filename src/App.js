@@ -9,9 +9,12 @@ import WdListPage from "./component/page/wdlist";
 import MyWantedPage from "./component/page/mywanted";
 import ProfilePage from "./component/page/profile";
 import CommunityPage from "./component/page/communityPage";
+import CommuWritePage from "./component/page/commuWritePage";
+import CommuPostingPage from "./component/page/commuPostingPage";
 import WdPage from "./component/page/wd";
 import BookmarksPage from "./component/page/bookmarks";
-import CommuWritePage from "./component/page/commuWritePage";
+import CommuEditPage from "./component/page/commuEditPage";
+
 
 import axios from "axios"
 
@@ -60,6 +63,8 @@ function App() {
         <Route path="/profile" element = {<ProfilePage />} />
         <Route path="/community" element = {<CommunityPage />} />
         <Route path="/community/write" element = {<CommuWritePage />} />
+        <Route path="/community/post/:postIdx" element = {<CommuPostingPage />} />
+        <Route path="/community/edit/:postIdx" element = {<CommuEditPage />} />
         <Route path="/wd/:idx" element = {<WdPage />} />
         <Route path= "/bookmarks" element = {<BookmarksPage />} />
       </Routes>

@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../common/header"
 
-export default function CommuWritePage(){
 
+export default function CommuEditPage(){
+    const params = useParams();
+    const paramsInt = parseInt(params.postIdx);
     const [title_value, set_title_value] = useState("");
     const [desc_value, set_desc_value] = useState("");
     // -------------------------------------------------------------
@@ -18,7 +20,6 @@ export default function CommuWritePage(){
     // -------------------------------------------------------------
     const height_std = 28;
     const [desc_value_line, set_desc_value_line] = useState(1);
-
 
     useEffect(() => {
         if(desc_value !== undefined){
@@ -40,7 +41,7 @@ export default function CommuWritePage(){
                 url: `${url}/wanted/tags/${localStorage.getItem("userIdx")}`,
                 headers: {
                     "X-ACCESS-TOKEN": localStorage.getItem("token"),
-                    userIdx: localStorage.getItem("userIdx")
+                    userIdx: localStorage.getItem("userIdx"),
                 }
             })
             set_tag_of_all(data.data.result.interestTags)
@@ -106,19 +107,55 @@ export default function CommuWritePage(){
         // set_selected_all_tags(deleted_arr);
     }
     // -------------------------------------------------------------
-    const [commu_write_top_btn, set_commu_write_top_btn] = useState("commu_write_top_btn");
-    const [all_write_obj, set_all_write_obj] = useState({
-        "tags": [],
-        "title": "",
-        "content": ""
-    });
-    useEffect(()=> {
-        const new_obj = {
-            "tags": selected_all_tags,
-            "title": title_value,
-            "content": desc_value
+    const [posting_tag_data, setposting_tag_data] = useState([]);
+    const postViewData_Login = async() => {
+        try {
+            const data = await axios({
+                method: "get",
+                url: `${url}/communities/postings/${params.postIdx}/${localStorage.getItem("userIdx")}`,
+                headers: {
+                    postingIdx: params.postIdx,
+                    "X-ACCESS-TOKEN": localStorage.getItem("token"),
+                    userIdx: localStorage.getItem("userIdx")
+                }
+            })
+            // console.log(data.data.result.postingMore.tags);
+            set_title_value(data.data.result.postingMore.title);
+            set_desc_value(data.data.result.postingMore.content);
+            setposting_tag_data(data.data.result.postingMore.tags);
         }
-        set_all_write_obj(new_obj)
+        catch(err){
+
+        }
+    }
+
+    const all_tags = [...tag_of_touch, ...tag_of_interest, ...tag_of_trend]
+    let data = selected_all_tags
+    useEffect(() => {
+        postViewData_Login();
+        for(let i = 0; i < all_tags.length; i++){
+            for(let j = 0; j < posting_tag_data.length; j++){
+                if(all_tags[i].name === posting_tag_data[j].name){
+                    data = [...data, all_tags[i].tagIdx]
+                }
+            }
+        }
+        set_selected_tags(data);
+        set_selected_all_tags(data)
+        console.log(selected_all_tags);
+    }, [tag_of_touch, tag_of_interest, tag_of_trend])
+
+    // -------------------------------------------------------------
+    const [commu_write_top_btn, set_commu_write_top_btn] = useState("commu_write_top_btn");
+    const new_obj = {
+        "postingIdx" : paramsInt,
+        "tags": selected_all_tags,
+        "title": title_value,
+        "content": desc_value
+    }
+
+    useEffect(()=> {
+        console.log(new_obj);
         if(selected_all_tags.length === 0 || title_value === "" || desc_value === ""){
             set_commu_write_top_btn("commu_write_top_btn")
         }
@@ -126,24 +163,15 @@ export default function CommuWritePage(){
             set_commu_write_top_btn("commu_write_top_btn Active")
         }
     }, [selected_all_tags, title_value, desc_value])
-    // -------------------------------------------------------------
-
-    const navigate = useNavigate();
+        // -------------------------------------------------------------
     const write_finished = () => {
         if(commu_write_top_btn === "commu_write_top_btn Active"){
-            const blobvalue = [all_write_obj]
             const formData = new FormData();
 
-            const blob = new Blob([JSON.stringify(all_write_obj)], {type: "application/json"})
+            const blob = new Blob([JSON.stringify(new_obj)], {type: "application/json"})
             formData.append("json", blob)
 
-            for (var key of formData.keys()) {
-                console.log(key);
-            }
-            for (var value of formData.values()) {
-                console.log(value);
-            }
-            console.log(blobvalue);
+
             alert("정상적으로 등록되었습니다.")
             posting_commu(formData);
             window.location.replace("/community")
@@ -152,7 +180,7 @@ export default function CommuWritePage(){
     const posting_commu = async(formData) => {
         try{
             const data = await axios({
-                method: "post",
+                method: "put",
                 url: `${url}/communities/${localStorage.getItem("userIdx")}`,
                 mode: "cors",
                 data: formData,
@@ -168,7 +196,6 @@ export default function CommuWritePage(){
 
         }
     }
-    // -------------------------------------------------------------
     return (
         <div>
             <Tag_popup_wrap tag_popup_on = {tag_popup_on}>
@@ -206,7 +233,16 @@ export default function CommuWritePage(){
                                             <ul className="tag_popup_main_lists">
                                                 {
                                                     list.tags.map((tags) => (
-                                                        <li
+                                                        selected_all_tags.includes(tags.tagIdx)
+                                                        ?<li
+                                                        key={tags.tagIdx}
+                                                        id = {tags.tagIdx}
+                                                        className="tag_popup_main_list Active"
+                                                        onClick={tags_active}
+                                                        >
+                                                            {tags.name}
+                                                        </li>
+                                                        :<li
                                                         key={tags.tagIdx}
                                                         id = {tags.tagIdx}
                                                         className="tag_popup_main_list"
