@@ -40,6 +40,7 @@ export default function CommuPostingPage(){
                     postingIdx: params.postIdx
                 }
             })
+            setposterIdx(data.data.result.postingMore.userIdx)
             setPosterImg(data.data.result.postingMore.profileUrl)
             setPostername(data.data.result.postingMore.name)
             setPostercareer(data.data.result.postingMore.career)
@@ -50,6 +51,7 @@ export default function CommuPostingPage(){
             setPosttags(data.data.result.postingMore.tags)
             setPostlikenum(data.data.result.postingMore.likeNum)
             setPostcommentNum(data.data.result.postingMore.commentNum)
+            setpostcommentList(data.data.result.commentList)
         }
         catch(err){
 
@@ -67,7 +69,7 @@ export default function CommuPostingPage(){
                     userIdx: localStorage.getItem("userIdx")
                 }
             })
-            setpostingIdx(data.data.result.postingMore.postingIdx);
+            setpostingIdx(data.data.result.postingMore.postingIdx)
             setposterIdx(data.data.result.postingMore.userIdx)
             setPosterImg(data.data.result.postingMore.profileUrl)
             setPostername(data.data.result.postingMore.name)

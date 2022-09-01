@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { nowPage } from "../../recoil/recoil";
+import { nowPage, isLogin } from "../../recoil/recoil";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function CompanyList(props){
@@ -56,17 +56,19 @@ export default function CompanyList(props){
         catch(err){
         }
     }
-    
+    const isLogined = useRecoilValue(isLogin);
     const book_mark_on = () => {
-        switch(isBookmark){
-            case 0:
-                bookmark_this();
-                break;
-            case 1:
-                bookmark_out();
-                break;
-            default:
-                break;
+        if(isLogined){
+            switch(isBookmark){
+                case 0:
+                    bookmark_this();
+                    break;
+                case 1:
+                    bookmark_out();
+                    break;
+                default:
+                    break;
+            }
         }
         console.log(isBookmark);
     }
@@ -82,6 +84,7 @@ export default function CompanyList(props){
                     "X-ACCESS-TOKEN": localStorage.getItem("token")
                 }
             })
+            console.log(data);
         }
         catch(err){
 

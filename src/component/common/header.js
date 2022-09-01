@@ -56,13 +56,13 @@ function LoginPopupComp(props){
         set_name_value("");
         set_phone_value("");
         set_password_value("");
+        set_password_check_value("");
 
         set_password_popup(false);
         set_sign_in_popup(true);
         set_sign_up_popup(false);
 
         set_login_popup_on(false)
-
     }
     // ------------------------------------------------
     //유저 이메일 체크
@@ -187,14 +187,16 @@ function LoginPopupComp(props){
                 set_name_value("");
                 set_phone_value("");
                 set_password_value("");
+                set_password_check_value("");
         
                 //창 닫기
                 set_sign_in_popup(true);
                 set_sign_up_popup(false);
                 set_login_popup_on(false);
+
+                login_popup_disabled();
             }
         }
-        //회원가입
 
     }
     // ------------------------------------------------
@@ -379,7 +381,7 @@ function LoginPopupComp(props){
                                     />
                                 </div>
                             </div>
-                            <div className="login_for_email_wrap">
+                            <div className="login_for_email_wrap phone">
                                 <label className="login_for_email_label">
                                     휴대폰 번호
                                 </label>
